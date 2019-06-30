@@ -8,7 +8,7 @@ node{
 	checkoutCode();
 	}
 	echo "this is a string ${params.branchName}";
-}
+
 def checkoutCode(config) {
 	echo "checking out with ::::::::"
     checkout([$class: 'GitSCM', 
@@ -19,4 +19,4 @@ def checkoutCode(config) {
 			 userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
 	
 }
-
+}
