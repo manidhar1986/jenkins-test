@@ -2,7 +2,7 @@ node{
 
 	def config = new OSBCIConfig().getConfig();
 	
-	s//tage('checkout')
+	//stage('checkout')
 	//checkoutCode(config);
 	echo "this is a string ${params.branchName}";
 }
