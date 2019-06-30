@@ -8,7 +8,7 @@ node{
 	checkoutCode();
 	}
 	echo "this is a string ${params.branchName}";
-
+}
 def checkoutCode() {
 	echo "checking out with ::::::::"
     checkout([$class: 'GitSCM', 
