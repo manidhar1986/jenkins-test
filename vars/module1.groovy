@@ -11,8 +11,8 @@ node{
 	def uploadSpec = """{
       "files": [
         {
-          "pattern": "**/var*/*",
-          "target": "jenkins-integration"
+          "pattern": "**/*",
+	  "target": "jenkins-integration"
         }
      ]
     }"""	
