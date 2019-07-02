@@ -7,6 +7,9 @@ node{
 	stage('checkout'){
 	checkoutCode();
 	}
+	stage('upload'){
+	uploadArti();	
+	}
 	echo "this is a string ${params.branchName}";
 }
 def checkoutCode() {
@@ -20,3 +23,15 @@ def checkoutCode() {
 	
 }
 
+def uploadArti(){
+def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/webapp/', username: 'venkat', password: 'Test@123'
+def uploadSpec = """{
+      "files": [
+        {
+          "pattern": "**/var*/*",
+          "target": "jenkins-integration"
+        }
+     ]
+    }"""
+serverArtifactory.upload(uploadSpec)
+}
