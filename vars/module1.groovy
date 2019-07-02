@@ -24,6 +24,7 @@ def checkoutCode() {
 }
 
 def uploadArti(){
+	echo "in upload"
 def uploadSpec = """{
       "files": [
         {
