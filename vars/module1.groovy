@@ -7,7 +7,7 @@ node{
 	checkoutCode();
 	}
 	stage('upload'){
-	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/webapp/', username: 'venkat', password: 'Test@123'
+	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/', username: 'venkat', password: 'Test@123'
 	def uploadSpec = """{
       "files": [
         {
