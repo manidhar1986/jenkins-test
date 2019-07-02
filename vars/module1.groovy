@@ -2,6 +2,7 @@
 
 node{
 	def config = new OSBCIConfig().getConfig();
+	try {
 	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
 	stage('checkout'){
 	checkoutCode();
@@ -10,6 +11,13 @@ node{
 	uploadCode();
 	}
 	echo "this is a string ${params.branchName}";
+	}catch (Exception e){
+			 echo "Failure occured at some stage in pipeline with ${params.branchName}";
+			//sendEmailNotification(config: config,statusJob: statusJob)
+			throw e;
+		}
+	
+	
 }
 def checkoutCode() {
 	echo "checking out with ::::::::"
