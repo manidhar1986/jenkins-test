@@ -3,6 +3,7 @@
 node{
 
 	def config = new OSBCIConfig().getConfig();
+	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/webapp/', username: 'venkat', password: 'Test@123'
 	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
 	stage('checkout'){
 	checkoutCode();
@@ -24,7 +25,6 @@ def checkoutCode() {
 }
 
 def uploadArti(){
-def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/webapp/', username: 'venkat', password: 'Test@123'
 def uploadSpec = """{
       "files": [
         {
@@ -33,5 +33,5 @@ def uploadSpec = """{
         }
      ]
     }"""
-serverArtifactory.upload(uploadSpec)
+server.upload(uploadSpec)
 }
