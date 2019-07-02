@@ -2,6 +2,11 @@
 
 node{
 	def config = new OSBCIConfig().getConfig();
+	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
+	stage('checkout'){
+	checkoutCode();
+	}
+	stage('upload'){
 	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/webapp/', username: 'venkat', password: 'Test@123'
 	def uploadSpec = """{
       "files": [
@@ -10,13 +15,8 @@ node{
           "target": "jenkins-integration"
         }
      ]
-    }"""
-	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
-	stage('checkout'){
-	checkoutCode();
-	}
-	stage('upload'){
-	uploadArti();	
+    }"""	
+		server.upload spec: uploadSpec
 	}
 	echo "this is a string ${params.branchName}";
 }
@@ -31,8 +31,4 @@ def checkoutCode() {
 	
 }
 
-def uploadArti(){
-	echo "in upload"
 
-server.upload spec: uploadSpec
-}
