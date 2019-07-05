@@ -5,6 +5,5 @@ def checkOut() {
 			 doGenerateSubmoduleConfigurations: false, 
 			 extensions: [], 
 			 submoduleCfg: [],
-userRemoteConfigs: [[
-credentialsID:
-url: 'https://github.com/manidhar1986/jenkins-test']]])
+userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
+}
