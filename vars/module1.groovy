@@ -4,9 +4,8 @@ node {
 	echo "thi is ${config.gitURL}"
 	try {
 	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
-	stage('checkout'){
+	stage('checkout')
 	checkoutCodeBase(config);
-	}
 	
 	echo "this is a string ${params.branchName}";
 	}catch (Exception e){
