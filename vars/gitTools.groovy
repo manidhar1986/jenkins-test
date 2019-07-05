@@ -6,6 +6,5 @@ def checkOut(gitconfig) {
 			 extensions: [], 
 			 submoduleCfg: [],
 userRemoteConfigs: [[
-credentialsID:gitconfig.gitCredentialID
 url: gitconfig.gitURL]]])
 }
