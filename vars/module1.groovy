@@ -11,5 +11,5 @@ node{
 }
 def checkoutCode(config) {
 	echo "In module1.groovy"
-	gitTools.checkOut(gitURL: "${config.gitURL}")
+	gitTools.checkOut(URL: "${config.gitURL}")
 }
