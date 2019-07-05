@@ -1,6 +1,6 @@
 def uploadCode() {
 
-	def server = Artifactory.server 'jartifact-id', credentialsId: 'jfrogid'
+	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/', username: 'venkat', password: 'Test@123'
     def uploadSpec = """{
       "files": [
         {
