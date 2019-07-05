@@ -5,10 +5,10 @@ node{
 	stage('checkout'){
 		echo "params:::::::::::::::::: ${config}";
 		echo "params-------------------->>>> ${params}";
-	checkoutCode(config);
+	checkoutCode();
 	}
 	
 }
-def checkoutCode(config) {
+def checkoutCode() {
 	gitTools.checkOut(URL: "${config.gitURL}")
 }
