@@ -6,6 +6,7 @@ def checkOut(gitConfig) {
 			 doGenerateSubmoduleConfigurations: false, 
 			 extensions: [], 
 			 submoduleCfg: [],
-			 userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
+			 //userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
+	                 userRemoteConfigs: [[url: gitConfig.URL]]])
 	
 }
