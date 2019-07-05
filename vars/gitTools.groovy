@@ -1,4 +1,4 @@
-def checkOut(git) {
+def checkOut() {
     echo "checking in checkout(git) method"
     checkout([$class: 'GitSCM', 
              branches: [[name: params.branchName]], 
