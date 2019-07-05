@@ -16,7 +16,7 @@ node {
 	
 	
 }
-def checkoutCodeBase(config) 
-{
+def checkoutCodeBase(config) {
+
 gitTools.checkOut(URL: "${config.gitURL}")	
 }
