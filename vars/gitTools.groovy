@@ -7,6 +7,6 @@ def checkOut(gitConfig) {
 			 extensions: [], 
 			 submoduleCfg: [],
 			 //userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
-	                 )
+	                 ])
 	
 }
