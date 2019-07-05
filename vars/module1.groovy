@@ -12,5 +12,5 @@ def checkoutCode(config) {
 	echo "In module1.groov1111y"
 	
 	echo"hi"
-	gitTools.checkOut(URL: "${config.gitURL}");
+	gitTools.checkOut(URL: "${config.gitURL}")
 }
