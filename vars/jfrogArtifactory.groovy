@@ -1,6 +1,6 @@
 def uploadCode() {
 
-	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/', credentialsId: 'jfrogid'
+	def server = Artifactory.server('jartifact'), credentialsId: 'jfrogid'
 	echo "val of {server}"
 	
     def uploadSpec = """{
