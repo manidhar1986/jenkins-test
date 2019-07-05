@@ -1,4 +1,5 @@
-node{
+
+node {
 	def config = new CIConfig().getConfig();
 	echo "thi is ${config.gitURL}"
 	try {
@@ -16,6 +17,7 @@ node{
 	
 	
 }
-def checkoutCodeBase(config) {
+def checkoutCodeBase(config) 
+{
 gitTools.checkOut(URL: "${config.gitURL}"	
 }
