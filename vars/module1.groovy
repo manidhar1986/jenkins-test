@@ -5,11 +5,11 @@ node{
 	stage('checkout'){
 		echo "params:::::::::::::::::: ${config}";
 		echo "params-------------------->>>> ${params}";
-	checkoutCode(config);
+	checkoutCode();
 	}
 	
 }
-def checkoutCode(config) {
+def checkoutCode() {
 	echo "In module1.groovy"
-	gitTools.checkOut(URL: "${config.gitURL}")
+	gitTools.checkOut()
 }
