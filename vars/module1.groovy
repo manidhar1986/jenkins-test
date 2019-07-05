@@ -6,7 +6,8 @@ node {
 	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
 	stage('checkout')
 	checkoutCodeBase(config);
-	
+	stage('upload artifacts')
+	uploadGenArt();
 	echo "this is a string ${params.branchName}";
 	}catch (Exception e){
 			 echo "Failure occured at some stage in pipeline with ${params.branchName}";
@@ -18,4 +19,8 @@ node {
 }
 def checkoutCodeBase(config) {
 	gitTools.checkOut(URL: config.gitURL)	
+}
+
+def uploadGenArt() {
+	jfrogArtifactory.uploadCode()
 }
