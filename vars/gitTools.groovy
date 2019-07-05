@@ -1,5 +1,5 @@
 
-def checkout(gitConfig) {
+def checkOut(gitConfig) {
 	echo "checking out with ::::::::"
     checkout([$class: 'GitSCM', 
              branches: [[name: params.branchName]], 
