@@ -1,13 +1,12 @@
 node{
 	def config = new CIConfig().getConfig();
+	echo "thi is ${config.gitURL}"
 	try {
 	properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')), parameters([string(defaultValue: '', description: '', name: 'branchName', trim: false)]), pipelineTriggers([pollSCM('* * 1 1 *')])])
 	stage('checkout'){
-	checkoutCode();
+	checkoutCodeBase();
 	}
-	stage('upload'){
-	uploadCode();
-	}
+	
 	echo "this is a string ${params.branchName}";
 	}catch (Exception e){
 			 echo "Failure occured at some stage in pipeline with ${params.branchName}";
@@ -17,26 +16,6 @@ node{
 	
 	
 }
-def checkoutCode() {
-	echo "checking out with ::::::::"
-    checkout([$class: 'GitSCM', 
-             branches: [[name: params.branchName]], 
-			 doGenerateSubmoduleConfigurations: false, 
-			 extensions: [], 
-			 submoduleCfg: [],
-			 userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
-	
-}
-
-def uploadCode() {
-	def server = Artifactory.newServer url: 'https://myjfrogtest.jfrog.io/myjfrogtest/', username: 'venkat', password: 'Test@123'
-	def uploadSpec = """{
-      "files": [
-        {
-          "pattern": "vars/*",
-	  "target": "jenkins-integration"
-        }
-     ]
-    }"""	
-		server.upload spec: uploadSpec
+def checkoutCodeBase() {
+gitTools.checkOut(URL: "${config.gitURL}"	
 }
