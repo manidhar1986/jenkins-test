@@ -1,8 +1,6 @@
 def uploadCode() {
 
-	def server = Artifactory.server 'jartifact-id'
-	server credentialsId = 'jfrogid'
-	server bypassProxy = true
+	def server = Artifactory.server 'jartifact-id', credentialsId: 'jfrogid', bypassProxy = true
 	
     def uploadSpec = """{
       "files": [
