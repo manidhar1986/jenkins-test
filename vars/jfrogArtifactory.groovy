@@ -6,7 +6,7 @@ def uploadCode() {
     def uploadSpec = """{
       "files": [
         {
-          "pattern": "vars/*",
+          "pattern": "vars/CIConfig*",
 	  "target": "jenkins-integration"
         }
      ]
