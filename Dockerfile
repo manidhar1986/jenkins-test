@@ -1,2 +1,3 @@
-FROM busybox:latest
-MAINTAINER Tester (email@domain.com)
+FROM node:7-alpine
+
+RUN apk add -U subversion
