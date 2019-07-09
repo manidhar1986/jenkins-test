@@ -1,29 +1,38 @@
 pipeline {
-    
-    agent none 
-    
+    agent none
+   
+    options {
+        
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2'))
+        }
+         parameters { 
+             string(name: 'branchNameSS', defaultValue: '', description: '') 
+             
+         }
+        triggers
+        {
+            pollSCM('* * 1 1 *')
+        }
     stages {
         
-        stage('checkout'){
-            steps {
-                
-           
-	    checkout([$class: 'GitSCM', 
+        stage('build') {
+             agent {
+                 label 'master'
+             }
+             steps {   
+                checkout([$class: 'GitSCM', 
              branches: [[name: params.branchName]], 
 			 doGenerateSubmoduleConfigurations: false, 
 			 extensions: [], 
 			 submoduleCfg: [],
 			 userRemoteConfigs: [[url: 'https://github.com/manidhar1986/jenkins-test']]])
-	}
+                sh 'echo from master'
+            }
         }
-        
-        stage('get docker'){
-            
-            agent  {
-               dockerfile true 
-               }
-    
-                        
+        stage ('in docker') {
+            agent {
+                dockerfile true
+            }
             steps {
                 sh 'npm --version'
             }
